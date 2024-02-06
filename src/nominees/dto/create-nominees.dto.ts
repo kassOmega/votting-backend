@@ -4,20 +4,20 @@ import { Nominees } from '../entities/nominees.entity';
 export class CreateNomineesDto {
   @IsString()
   @IsEmpty()
-  firstName: string;
-
-  @IsString()
-  @IsEmpty()
-  lastName: string;
+  fullName: string;
 
   @IsPhoneNumber('ET')
   @IsEmpty()
   phoneNumber: string;
 
+  @IsString()
+  @IsEmpty()
+  vote: number;
+
   static toEntity(dto: CreateNomineesDto): Nominees {
     const nominees = new Nominees();
-    nominees.firstName = dto.firstName;
-    nominees.lastName = dto.lastName;
+    nominees.fullName = dto.fullName;
+    nominees.vote = dto.vote;
     nominees.phoneNumber = dto.phoneNumber;
     return nominees;
   }

@@ -5,9 +5,9 @@ export class Nominees {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  firstName: string;
-  @Column()
-  lastName: string;
+  fullName: string;
   @Column()
   phoneNumber: string;
+  @Column()
+  vote: number;
 }

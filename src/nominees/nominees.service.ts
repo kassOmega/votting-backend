@@ -12,33 +12,33 @@ export class NomineesService {
     private readonly nomineesRepo: Repository<Nominees>,
   ) {}
 
-  async create(cusomer: CreateNomineesDto) {
+  async create(nominee: CreateNomineesDto) {
     const existingnominees = await this.nomineesRepo.findOneBy({
-      phoneNumber: cusomer.phoneNumber,
+      phoneNumber: nominee.phoneNumber,
     });
     if (existingnominees) {
       throw new BadRequestException('nominees Already exists');
     }
-    return this.nomineesRepo.save(cusomer);
+    return this.nomineesRepo.save(nominee);
   }
 
   findAll() {
-    const cusomer = this.nomineesRepo.find();
-    return cusomer;
+    const nominee = this.nomineesRepo.find();
+    return nominee;
   }
 
   findOne(id: number) {
-    const cusomer = this.nomineesRepo.findOneBy({ id });
-    return cusomer;
+    const nominee = this.nomineesRepo.findOneBy({ id });
+    return nominee;
   }
   findByPhone(phoneNumber: string) {
-    const cusomer = this.nomineesRepo.findOneBy({ phoneNumber });
-    return cusomer;
+    const nominee = this.nomineesRepo.findOneBy({ phoneNumber });
+    return nominee;
   }
 
   update(id: number, updatenomineesDto: UpdateNomineesDto) {
-    const cusomer = this.nomineesRepo.findOneBy({ id });
-    return this.nomineesRepo.save({ ...cusomer, ...updatenomineesDto });
+    const nominee = this.nomineesRepo.findOneBy({ id });
+    return this.nomineesRepo.save({ ...nominee, ...updatenomineesDto });
   }
 
   remove(id: number) {
