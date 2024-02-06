@@ -41,6 +41,13 @@ export class NomineesController {
   ) {
     return this.nomineesService.update(id, updatenomineesDto);
   }
+  @Patch('vote/:id')
+  updateVote(
+    @Param('id') id: number,
+    @Body() updatenomineesDto: UpdateNomineesDto,
+  ) {
+    return this.nomineesService.updateVote(id, updatenomineesDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: number) {

@@ -40,6 +40,10 @@ export class NomineesService {
     const nominee = this.nomineesRepo.findOneBy({ id });
     return this.nomineesRepo.save({ ...nominee, ...updatenomineesDto });
   }
+  updateVote(id: number, updatenomineesDto: UpdateNomineesDto) {
+    const nominee = this.nomineesRepo.findOneBy({ id });
+    return this.nomineesRepo.save({ ...nominee, vote: updatenomineesDto.vote });
+  }
 
   remove(id: number) {
     return this.nomineesRepo.delete(id);
