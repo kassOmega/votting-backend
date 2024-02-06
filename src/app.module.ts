@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Nominees, NomineesModule } from './nominees';
 
 @Module({
   imports: [
@@ -12,8 +13,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'root',
       database: 'quatra-db',
+      entities: [Nominees],
       synchronize: true,
     }),
+    NomineesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
