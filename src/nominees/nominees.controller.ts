@@ -14,7 +14,6 @@ export class NomineesController {
   constructor(private readonly nomineesService: NomineesService) {}
   @Post()
   create(@Body() createnomineesDtos: CreateNomineesDto[]) {
-    console.log(createnomineesDtos);
     createnomineesDtos.map((createnomineesDto) => {
       const nominees = CreateNomineesDto.toEntity(createnomineesDto);
       return this.nomineesService.create(nominees);
