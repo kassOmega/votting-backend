@@ -9,15 +9,16 @@ import {
 } from '@nestjs/common';
 import { NomineesService } from './nominees.service';
 import { CreateNomineesDto, UpdateNomineesDto } from './dto';
-
 @Controller('nominees')
 export class NomineesController {
   constructor(private readonly nomineesService: NomineesService) {}
-
   @Post()
-  create(@Body() createnomineesDto: CreateNomineesDto) {
-    const nominees = CreateNomineesDto.toEntity(createnomineesDto);
-    return this.nomineesService.create(nominees);
+  create(@Body() createnomineesDtos: CreateNomineesDto[]) {
+    console.log(createnomineesDtos);
+    createnomineesDtos.map((createnomineesDto) => {
+      const nominees = CreateNomineesDto.toEntity(createnomineesDto);
+      return this.nomineesService.create(nominees);
+    });
   }
 
   @Get()
