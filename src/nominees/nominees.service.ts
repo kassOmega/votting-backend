@@ -14,10 +14,10 @@ export class NomineesService {
 
   async create(nominee: CreateNomineesDto) {
     const existingnominees = await this.nomineesRepo.findOneBy({
-      phoneNumber: nominee.phoneNumber,
+      fullName: nominee.fullName,
     });
     if (existingnominees) {
-      throw new BadRequestException('nominees Already exists');
+      throw new BadRequestException('nominee Already exists');
     }
     return this.nomineesRepo.save(nominee);
   }
@@ -31,8 +31,8 @@ export class NomineesService {
     const nominee = this.nomineesRepo.findOneBy({ id });
     return nominee;
   }
-  findByPhone(phoneNumber: string) {
-    const nominee = this.nomineesRepo.findOneBy({ phoneNumber });
+  findByPhone(fullName: string) {
+    const nominee = this.nomineesRepo.findOneBy({ fullName });
     return nominee;
   }
 

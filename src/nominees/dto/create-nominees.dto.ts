@@ -1,14 +1,10 @@
-import { IsEmpty, IsPhoneNumber, IsString } from 'class-validator';
+import { IsEmpty, IsString } from 'class-validator';
 import { Nominees } from '../entities/nominees.entity';
 
 export class CreateNomineesDto {
   @IsString()
   @IsEmpty()
   fullName: string;
-
-  @IsPhoneNumber('ET')
-  @IsEmpty()
-  phoneNumber: string;
 
   @IsString()
   @IsEmpty()
@@ -18,7 +14,6 @@ export class CreateNomineesDto {
     const nominees = new Nominees();
     nominees.fullName = dto.fullName;
     nominees.vote = dto.vote;
-    nominees.phoneNumber = dto.phoneNumber;
     return nominees;
   }
 }

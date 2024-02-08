@@ -7,7 +7,5 @@ export class Nominees {
   @Column()
   fullName: string;
   @Column()
-  phoneNumber: string;
-  @Column()
   vote: number;
 }
