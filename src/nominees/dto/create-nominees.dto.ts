@@ -7,7 +7,6 @@ export class CreateNomineesDto {
   fullName: string;
 
   @IsString()
-  @IsEmpty()
   vote: number;
 
   static toEntity(dto: CreateNomineesDto): Nominees {
