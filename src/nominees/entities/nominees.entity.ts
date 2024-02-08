@@ -6,6 +6,6 @@ export class Nominees {
   id: number;
   @Column()
   fullName: string;
-  @Column()
+  @Column({ default: 0 })
   vote: number;
 }
