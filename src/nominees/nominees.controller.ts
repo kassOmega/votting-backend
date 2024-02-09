@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { NomineesService } from './nominees.service';
 import { CreateNomineesDto, UpdateNomineesDto } from './dto';
+
 @Controller('nominees')
 export class NomineesController {
   constructor(private readonly nomineesService: NomineesService) {}
@@ -19,7 +20,13 @@ export class NomineesController {
       return this.nomineesService.create(nominees);
     });
   }
-
+  @Patch('vote')
+  updateVote(@Body() updatenomineesDtos: CreateNomineesDto[]) {
+    updatenomineesDtos.map((updatenomineesDto) => {
+      const nominees = CreateNomineesDto.toEntity(updatenomineesDto);
+      return this.nomineesService.updateVote(nominees.id, nominees);
+    });
+  }
   @Get()
   findAll() {
     return this.nomineesService.findAll();
@@ -40,13 +47,6 @@ export class NomineesController {
     @Body() updatenomineesDto: UpdateNomineesDto,
   ) {
     return this.nomineesService.update(id, updatenomineesDto);
-  }
-  @Patch('vote/:id')
-  updateVote(
-    @Param('id') id: number,
-    @Body() updatenomineesDto: UpdateNomineesDto,
-  ) {
-    return this.nomineesService.updateVote(id, updatenomineesDto);
   }
 
   @Delete(':id')
