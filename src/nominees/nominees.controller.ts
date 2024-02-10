@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { NomineesService } from './nominees.service';
 import { CreateNomineesDto, UpdateNomineesDto } from './dto';
+import { UpdateNomineesVoteDto } from './dto/update-nominees-vote.dto';
 
 @Controller('nominees')
 export class NomineesController {
@@ -21,9 +22,10 @@ export class NomineesController {
     });
   }
   @Patch('vote')
-  updateVote(@Body() updatenomineesDtos: CreateNomineesDto[]) {
+  updateVote(@Body() updatenomineesDtos: UpdateNomineesVoteDto[]) {
+    console.log(updatenomineesDtos);
     updatenomineesDtos.map((updatenomineesDto) => {
-      const nominees = CreateNomineesDto.toEntity(updatenomineesDto);
+      const nominees = UpdateNomineesVoteDto.toEntity(updatenomineesDto);
       return this.nomineesService.updateVote(nominees.id, nominees);
     });
   }
