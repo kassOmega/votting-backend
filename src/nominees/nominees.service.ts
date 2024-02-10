@@ -40,9 +40,11 @@ export class NomineesService {
     const nominee = this.nomineesRepo.findOneBy({ id });
     return this.nomineesRepo.save({ ...nominee, ...updatenomineesDto });
   }
-  updateVote(id: number, updatenomineesDto: UpdateNomineesDto) {
-    const nominee = this.nomineesRepo.findOneBy({ id });
-    return this.nomineesRepo.save({ ...nominee, vote: updatenomineesDto.vote });
+  async updateVote(id: number, updatenomineesDto: UpdateNomineesDto) {
+    const nominee = await this.nomineesRepo.findOneBy({ id });
+    const { vote, ...other } = nominee;
+    const newVote = vote + updatenomineesDto.vote;
+    await this.nomineesRepo.update(id, { ...other, vote: newVote });
   }
 
   remove(id: number) {
