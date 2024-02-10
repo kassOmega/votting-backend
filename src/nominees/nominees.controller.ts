@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { NomineesService } from './nominees.service';
 import { CreateNomineesDto, UpdateNomineesDto } from './dto';
@@ -21,9 +22,8 @@ export class NomineesController {
       return this.nomineesService.create(nominees);
     });
   }
-  @Patch('vote')
+  @Put('vote')
   updateVote(@Body() updatenomineesDtos: UpdateNomineesVoteDto[]) {
-    console.log(updatenomineesDtos);
     updatenomineesDtos.map((updatenomineesDto) => {
       const nominees = UpdateNomineesVoteDto.toEntity(updatenomineesDto);
       return this.nomineesService.updateVote(nominees.id, nominees);
