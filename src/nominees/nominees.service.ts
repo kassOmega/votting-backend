@@ -44,7 +44,7 @@ export class NomineesService {
     const nominee = await this.nomineesRepo.findOneBy({ id });
     const { vote, ...other } = nominee;
     const newVote = vote + updatenomineesDto.vote;
-    await this.nomineesRepo.update(id, { ...other, vote: newVote });
+    return await this.nomineesRepo.update(id, { ...other, vote: newVote });
   }
 
   remove(id: number) {
